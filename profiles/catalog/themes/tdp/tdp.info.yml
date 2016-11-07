@@ -1,0 +1,29 @@
+core: 8.x
+type: theme
+base theme: bootstrap
+
+name: 'Bootstrap Sub-Theme (CDN)'
+description: 'Uses the jsDelivr CDN for all CSS and JavaScript. No source files or compiling is necessary and is recommended for simple sites or beginners.'
+package: 'Bootstrap'
+
+regions:
+  header_top: 'Header top'
+  branding: 'Branding'
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  banner: 'Top banner'
+  header: 'Top Bar'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+
+libraries:
+  - 'tdp/global-styling'
+  - 'tdp/fonts'
+  

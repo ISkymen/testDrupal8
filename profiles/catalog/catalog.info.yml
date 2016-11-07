@@ -1,0 +1,17 @@
+name: Catalog
+type: profile
+description: Install base catalog of products
+core: 8.x
+
+dependencies:
+  - slick
+  - contact_block
+  - ctools
+  - pathauto
+  - redirect
+  - simple_sitemap
+  - taxonomy_menu
+  - token
+themes:
+  - bootstrap
+  - tdp

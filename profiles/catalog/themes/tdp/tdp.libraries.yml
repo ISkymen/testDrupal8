@@ -1,0 +1,14 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/script.js: {}
+
+fonts:
+  license:
+    name: SIL Open Font License 1.1
+    url: //scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=PT+Sans+Narrow|Open+Sans:400,600&subset=latin,cyrillic: { type: external }

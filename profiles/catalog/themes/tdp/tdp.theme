@@ -1,0 +1,83 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+
+use Drupal\Core\Url;
+
+function tdp_preprocess_field__image(&$variables) {
+// Render only one image in teaser and all, except first image in full node view.
+    if ($variables['element']['#bundle'] == 'product' && $variables['element']['#view_mode'] == 'teaser') {
+        $item = reset($variables['items']);
+        $variables['items'] = array($item);
+    }
+    if ($variables['element']['#bundle'] == 'product' && $variables['element']['#view_mode'] == 'full') {
+		reset($variables['items']);
+		$key = key($variables['items']);
+		unset($variables['items'][$key]);
+    }	
+}
+
+function tdp_preprocess_node(&$variables){
+// Render first image in full node view.
+// In template node-product.html.twig used variable {{ first_image }}
+ //	print_r(time() . " - " . \Drupal::routeMatch()->getRawParameter('node'));
+	if ($variables['content']['field_product_image']['#bundle'] == 'product' && $variables['content']['field_product_image']['#view_mode'] == 'full') {
+        $variables['first_image'] = $variables['content']['field_product_image'][0];
+	}
+} 
+
+function tdp_preprocess_html(&$variables) {
+// Add unique CSS class in body for all pages
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    $variables['attributes']['class'][] = 'node-' . $node->id();
+  }
+}
+
+function tdp_preprocess_page(&$variables) {
+    $copy_url = Url::fromUri('http://smartidea.com.ua',
+      $options = array(
+        'attributes' => array(
+          'class' => array('copy__link'),
+          'target' => '_blank',
+        ),
+        'absolute' => TRUE,
+      )
+    );
+    $variables['copy'] = array(
+      '#type' => 'markup',
+      '#prefix' => '<div class="copy">',
+      '#markup' => "Разработка: " . \Drupal\Core\Link::fromTextAndUrl('SmartIdea.com.ua', $copy_url)->toString(),
+      '#suffix' => '</div>',
+    );
+}
+
+function tdp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+// Remove preview button in contact form
+	if (in_array($form_id, ['contact_message_feedback_form', ])) {
+		$key = ($form_id == 'contact_message_feedback_form') ? 'actions' : 'basic';
+		$form[$key]['preview']['#access'] = FALSE;
+	}
+}
+
+function tdp_preprocess_menu(&$variables, $hook) {
+  if ($hook == 'menu__secondary') {
+	$variables['#cache']['max-age'] = 0;
+	$node = \Drupal::routeMatch()->getParameter('node');
+	if ($node) {
+	$tid = $node->field_product_category->target_id;
+	//print_r(time() . " - " . \Drupal::routeMatch()->getRawParameter('node'));		
+	    $items = $variables['items'];
+	  foreach ($items as $key => $item) {
+		if ($item['url']->getInternalPath() == "taxonomy/term/" . $tid) {
+		  $variables['items'][$key]['attributes']->addClass('active');
+		}
+      }	
+	}
+
+
+  }
+}
