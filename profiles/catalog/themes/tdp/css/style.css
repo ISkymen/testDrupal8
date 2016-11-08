@@ -50,6 +50,12 @@ body {
 
 }
 
+.region-content {
+    background: lightblue;
+    border-radius: 10px;
+    border: 1px solid deepskyblue;
+}
+
 h2 a {
 	color: #707070;
     text-transform: uppercase;

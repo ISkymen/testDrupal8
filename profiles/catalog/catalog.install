@@ -19,9 +19,11 @@ function catalog_install() {
 
   // Add code here to make nodes, terms, etc.
 
-\Drupal::configFactory()
-  ->getEditable('system.theme')
-  ->set('default', 'tdp')
-  ->save();
+  \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
+
+  // Assign user 1 the "administrator" role.
+  $user = \Drupal\user\Entity\User::load(1);
+  $user->roles[] = 'administrator';
+  $user->save();
 
 }

@@ -4,14 +4,43 @@ description: Install base catalog of products
 core: 8.x
 
 dependencies:
-  - slick
+  - node
+  - history
+  - block
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - comment
+  - contextual
+  - contact
+  - menu_link_content
+  - datetime
+  - block_content
+  - quickedit
+  - editor
+  - help
+  - image
+  - link
+  - user
+  - menu_ui
+  - options
+  - path
+  - page_cache
+  - dynamic_page_cache
+  - taxonomy
+  - dblog
+  - search
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - views
+  - views_ui
+  - automated_cron
   - contact_block
-  - ctools
-  - pathauto
-  - redirect
-  - simple_sitemap
-  - taxonomy_menu
-  - token
+  - content_translation
 themes:
+  - seven
   - bootstrap
   - tdp

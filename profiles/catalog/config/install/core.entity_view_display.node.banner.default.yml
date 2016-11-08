@@ -1,0 +1,46 @@
+langcode: ru
+status: true
+dependencies:
+  config:
+    - field.field.node.banner.field_banner_content
+    - field.field.node.banner.field_banner_image
+    - field.field.node.banner.field_banner_link
+    - node.type.banner
+  module:
+    - image
+    - link
+    - user
+id: node.banner.default
+targetEntityType: node
+bundle: banner
+mode: default
+content:
+  field_banner_content:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_banner_image:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_banner_link:
+    weight: 103
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  links:
+    weight: 100
+hidden:
+  langcode: true
